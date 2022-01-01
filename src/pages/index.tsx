@@ -3,6 +3,14 @@ import { Header } from '../components/Header';
 import { Footer } from '../components/Footer';
 import { Box, Select } from '@chakra-ui/react';
 import { Stack, HStack, VStack } from '@chakra-ui/react';
+import { Text } from '@chakra-ui/layout';
+import {
+  NumberInput,
+  NumberInputField,
+  NumberInputStepper,
+  NumberIncrementStepper,
+  NumberDecrementStepper,
+} from '@chakra-ui/react';
 
 export default function Home() {
   return (
@@ -24,6 +32,22 @@ export default function Home() {
                 <option value='高専'>高専</option>
                 <option value='会社'>会社</option>
               </Select>
+              <NumberInput defaultValue={3} min={1}>
+                <NumberInputField />
+                <NumberInputStepper>
+                  <NumberIncrementStepper />
+                  <NumberDecrementStepper />
+                </NumberInputStepper>
+              </NumberInput>
+              <Text fontSize='sm'>年</Text>
+              <NumberInput defaultValue={0} min={0} max={11}>
+                <NumberInputField />
+                <NumberInputStepper>
+                  <NumberIncrementStepper />
+                  <NumberDecrementStepper />
+                </NumberInputStepper>
+              </NumberInput>
+              <Text fontSize='sm'>ヶ月</Text>
             </HStack>
           </Stack>
         </Box>
