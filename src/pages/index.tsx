@@ -1,6 +1,9 @@
 import Head from 'next/head';
 import { Header } from '../components/Header';
 import { Footer } from '../components/Footer';
+import { Box, Select } from '@chakra-ui/react';
+import { Stack, HStack, VStack } from '@chakra-ui/react';
+
 export default function Home() {
   return (
     <div className='site-wrapper'>
@@ -11,7 +14,20 @@ export default function Home() {
       </Head>
       <Header />
 
-      <main></main>
+      <main>
+        <Box textAlign='center' width='70%' margin='0 auto'>
+          <Stack spacing={3} margin='0'>
+            <HStack>
+              <Select>
+                <option value='高校'>高校</option>
+                <option value='大学'>大学</option>
+                <option value='高専'>高専</option>
+                <option value='会社'>会社</option>
+              </Select>
+            </HStack>
+          </Stack>
+        </Box>
+      </main>
 
       <Footer />
     </div>
