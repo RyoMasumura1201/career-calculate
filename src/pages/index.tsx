@@ -14,9 +14,13 @@ import {
 import { useState } from 'react';
 import { AddIcon } from '@chakra-ui/icons';
 import { IconButton } from '@chakra-ui/react';
+import { carrerType } from '../../type';
 
 export default function Home() {
-  const [careerList, setCareerList] = useState([]);
+  const [careerList, setCareerList] = useState<carrerType[]>([{ job: '', year: 3, month: 4 }]);
+  const addCareer = () => {
+    setCareerList([...careerList, { job: '', year: 3, month: 4 }]);
+  };
   return (
     <div className='site-wrapper'>
       <Head>
@@ -29,31 +33,40 @@ export default function Home() {
       <main>
         <Box textAlign='center' width='70%' margin='0 auto'>
           <Stack spacing={2} margin='0'>
-            <IconButton colorScheme='teal' aria-label='経歴追加' width='40px' icon={<AddIcon />} />
-            <HStack>
-              <Select>
-                <option value='高校'>高校</option>
-                <option value='大学'>大学</option>
-                <option value='高専'>高専</option>
-                <option value='会社'>会社</option>
-              </Select>
-              <NumberInput defaultValue={3} min={1}>
-                <NumberInputField />
-                <NumberInputStepper>
-                  <NumberIncrementStepper />
-                  <NumberDecrementStepper />
-                </NumberInputStepper>
-              </NumberInput>
-              <Text fontSize='sm'>年間</Text>
-              <NumberInput defaultValue={4} min={1} max={12}>
-                <NumberInputField />
-                <NumberInputStepper>
-                  <NumberIncrementStepper />
-                  <NumberDecrementStepper />
-                </NumberInputStepper>
-              </NumberInput>
-              <Text fontSize='sm'>月から</Text>
-            </HStack>
+            <IconButton
+              colorScheme='teal'
+              aria-label='経歴追加'
+              width='40px'
+              icon={<AddIcon />}
+              onClick={addCareer}
+            />
+
+            {careerList.map((carrer) => (
+              <HStack key={carrer.job}>
+                <Select>
+                  <option value='高校'>高校</option>
+                  <option value='大学'>大学</option>
+                  <option value='高専'>高専</option>
+                  <option value='会社'>会社</option>
+                </Select>
+                <NumberInput defaultValue={3} min={1}>
+                  <NumberInputField />
+                  <NumberInputStepper>
+                    <NumberIncrementStepper />
+                    <NumberDecrementStepper />
+                  </NumberInputStepper>
+                </NumberInput>
+                <Text fontSize='sm'>年間</Text>
+                <NumberInput defaultValue={4} min={1} max={12}>
+                  <NumberInputField />
+                  <NumberInputStepper>
+                    <NumberIncrementStepper />
+                    <NumberDecrementStepper />
+                  </NumberInputStepper>
+                </NumberInput>
+                <Text fontSize='sm'>月から</Text>
+              </HStack>
+            ))}
           </Stack>
         </Box>
       </main>
