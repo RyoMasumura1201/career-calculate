@@ -11,8 +11,12 @@ import {
   NumberIncrementStepper,
   NumberDecrementStepper,
 } from '@chakra-ui/react';
+import { useState } from 'react';
+import { AddIcon } from '@chakra-ui/icons';
+import { IconButton } from '@chakra-ui/react';
 
 export default function Home() {
+  const [careerList, setCareerList] = useState([]);
   return (
     <div className='site-wrapper'>
       <Head>
@@ -24,7 +28,8 @@ export default function Home() {
 
       <main>
         <Box textAlign='center' width='70%' margin='0 auto'>
-          <Stack spacing={3} margin='0'>
+          <Stack spacing={2} margin='0'>
+            <IconButton colorScheme='teal' aria-label='経歴追加' width='40px' icon={<AddIcon />} />
             <HStack>
               <Select>
                 <option value='高校'>高校</option>
@@ -39,15 +44,15 @@ export default function Home() {
                   <NumberDecrementStepper />
                 </NumberInputStepper>
               </NumberInput>
-              <Text fontSize='sm'>年</Text>
-              <NumberInput defaultValue={0} min={0} max={11}>
+              <Text fontSize='sm'>年間</Text>
+              <NumberInput defaultValue={4} min={1} max={12}>
                 <NumberInputField />
                 <NumberInputStepper>
                   <NumberIncrementStepper />
                   <NumberDecrementStepper />
                 </NumberInputStepper>
               </NumberInput>
-              <Text fontSize='sm'>ヶ月</Text>
+              <Text fontSize='sm'>月から</Text>
             </HStack>
           </Stack>
         </Box>
