@@ -21,8 +21,6 @@ export default function Home() {
     { id: '1', job: '', year: 3, month: 4 },
   ]);
   const addCareer = () => {
-    console.log(careerList[careerList.length - 1].id);
-    console.log(careerList);
     setCareerList([
       ...careerList,
       {
@@ -35,10 +33,11 @@ export default function Home() {
   };
 
   const deleteCareer = (e: React.MouseEvent<HTMLButtonElement>) => {
-    const id = e.currentTarget.getAttribute('id');
-    console.log(id);
+    if (careerList.length > 1) {
+      const id = e.currentTarget.getAttribute('id');
 
-    setCareerList(careerList.filter((career) => career.id != id));
+      setCareerList(careerList.filter((career) => career.id != id));
+    }
   };
   return (
     <div className='site-wrapper'>
