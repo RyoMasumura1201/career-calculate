@@ -11,7 +11,7 @@ import {
   NumberIncrementStepper,
   NumberDecrementStepper,
 } from '@chakra-ui/react';
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { AddIcon, DeleteIcon } from '@chakra-ui/icons';
 import { IconButton } from '@chakra-ui/react';
 import { carrerType } from '../../type';
@@ -21,14 +21,22 @@ export default function Home() {
     { id: '1', job: '', year: 3, month: 4 },
   ]);
   const addCareer = () => {
+    console.log(careerList[careerList.length - 1].id);
+    console.log(careerList);
     setCareerList([
       ...careerList,
-      { id: String(Number(careerList[careerList.length - 1].id) + 1), job: '', year: 3, month: 4 },
+      {
+        id: (parseInt(careerList[careerList.length - 1].id) + 1).toString(),
+        job: '',
+        year: 3,
+        month: 4,
+      },
     ]);
   };
 
-  const deleteCareer = (e: any) => {
-    const id = e.target.getAttribute('id');
+  const deleteCareer = (e: React.MouseEvent<HTMLButtonElement>) => {
+    const id = e.currentTarget.getAttribute('id');
+    console.log(id);
 
     setCareerList(careerList.filter((career) => career.id != id));
   };
