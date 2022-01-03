@@ -12,19 +12,25 @@ import {
   NumberDecrementStepper,
 } from '@chakra-ui/react';
 import { useState } from 'react';
-import { AddIcon } from '@chakra-ui/icons';
+import { AddIcon, DeleteIcon } from '@chakra-ui/icons';
 import { IconButton } from '@chakra-ui/react';
 import { carrerType } from '../../type';
 
 export default function Home() {
   const [careerList, setCareerList] = useState<carrerType[]>([
-    { id: 1, job: '', year: 3, month: 4 },
+    { id: '1', job: '', year: 3, month: 4 },
   ]);
   const addCareer = () => {
     setCareerList([
       ...careerList,
-      { id: careerList[careerList.length - 1].id + 1, job: '', year: 3, month: 4 },
+      { id: String(Number(careerList[careerList.length - 1].id) + 1), job: '', year: 3, month: 4 },
     ]);
+  };
+
+  const deleteCareer = (e: any) => {
+    const id = e.target.getAttribute('id');
+
+    setCareerList(careerList.filter((career) => career.id != id));
   };
   return (
     <div className='site-wrapper'>
@@ -71,6 +77,14 @@ export default function Home() {
                   </NumberInputStepper>
                 </NumberInput>
                 <Text fontSize='sm'>月から</Text>
+                <IconButton
+                  id={carrer.id}
+                  colorScheme='gray'
+                  aria-label='経歴削除'
+                  width='40px'
+                  icon={<DeleteIcon />}
+                  onClick={deleteCareer}
+                />
               </HStack>
             ))}
           </Stack>

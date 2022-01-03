@@ -1,5 +1,5 @@
 export type carrerType = {
-  id: number;
+  id: string;
   job: string;
   year: number;
   month: number;
