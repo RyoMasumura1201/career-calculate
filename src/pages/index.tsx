@@ -17,9 +17,14 @@ import { IconButton } from '@chakra-ui/react';
 import { carrerType } from '../../type';
 
 export default function Home() {
-  const [careerList, setCareerList] = useState<carrerType[]>([{ job: '', year: 3, month: 4 }]);
+  const [careerList, setCareerList] = useState<carrerType[]>([
+    { id: 1, job: '', year: 3, month: 4 },
+  ]);
   const addCareer = () => {
-    setCareerList([...careerList, { job: '', year: 3, month: 4 }]);
+    setCareerList([
+      ...careerList,
+      { id: careerList[careerList.length - 1].id + 1, job: '', year: 3, month: 4 },
+    ]);
   };
   return (
     <div className='site-wrapper'>
@@ -42,12 +47,13 @@ export default function Home() {
             />
 
             {careerList.map((carrer) => (
-              <HStack key={carrer.job}>
+              <HStack key={carrer.id}>
                 <Select>
                   <option value='高校'>高校</option>
                   <option value='大学'>大学</option>
                   <option value='高専'>高専</option>
                   <option value='会社'>会社</option>
+                  <option value='その他'>その他</option>
                 </Select>
                 <NumberInput defaultValue={3} min={1}>
                   <NumberInputField />
