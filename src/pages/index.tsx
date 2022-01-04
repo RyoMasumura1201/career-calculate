@@ -32,6 +32,23 @@ export default function Home() {
     ]);
   };
 
+  const handleChangeJob = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    const id = e.target.getAttribute('id');
+    const value = e.target.value;
+    setCareerList(
+      careerList.map((career) => {
+        if (career.id === id) {
+          career.job = value;
+        }
+        return career;
+      }),
+    );
+  };
+
+  const handleChangeYear = () => {};
+
+  const handleChangeMonth = () => {};
+
   const deleteCareer = (e: React.MouseEvent<HTMLButtonElement>) => {
     if (careerList.length > 1) {
       const id = e.currentTarget.getAttribute('id');
@@ -59,16 +76,16 @@ export default function Home() {
               onClick={addCareer}
             />
 
-            {careerList.map((carrer) => (
-              <HStack key={carrer.id}>
-                <Select>
+            {careerList.map(({ id, job, year, month }) => (
+              <HStack key={id}>
+                <Select value={job} onChange={handleChangeJob} id={id}>
                   <option value='高校'>高校</option>
                   <option value='大学'>大学</option>
                   <option value='高専'>高専</option>
                   <option value='会社'>会社</option>
                   <option value='その他'>その他</option>
                 </Select>
-                <NumberInput defaultValue={3} min={1}>
+                <NumberInput defaultValue={3} min={1} value={year} onChange={handleChangeYear}>
                   <NumberInputField />
                   <NumberInputStepper>
                     <NumberIncrementStepper />
@@ -76,7 +93,13 @@ export default function Home() {
                   </NumberInputStepper>
                 </NumberInput>
                 <Text fontSize='sm'>年間</Text>
-                <NumberInput defaultValue={4} min={1} max={12}>
+                <NumberInput
+                  defaultValue={4}
+                  min={1}
+                  max={12}
+                  value={month}
+                  onChange={handleChangeMonth}
+                >
                   <NumberInputField />
                   <NumberInputStepper>
                     <NumberIncrementStepper />
@@ -85,7 +108,7 @@ export default function Home() {
                 </NumberInput>
                 <Text fontSize='sm'>月から</Text>
                 <IconButton
-                  id={carrer.id}
+                  id={id}
                   colorScheme='gray'
                   aria-label='経歴削除'
                   width='40px'
