@@ -64,7 +64,6 @@ export default function Home() {
   const handleChangeMonth = (str: string, num: number) => {
     setTimeout(() => {
       if (document.activeElement) {
-        console.log(document.activeElement.getAttribute('id'));
         const id = document.activeElement.getAttribute('id');
         setCareerList(
           careerList.map((career) => {
