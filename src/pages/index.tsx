@@ -46,33 +46,36 @@ export default function Home() {
   };
 
   const handleChangeYear = (str: string, num: number) => {
-    if (document.activeElement) {
-      console.log(document.activeElement.getAttribute('id'));
-      const id = document.activeElement.getAttribute('id');
-      setCareerList(
-        careerList.map((career) => {
-          if (career.id === id && num > 0) {
-            career.year = num;
-          }
-          return career;
-        }),
-      );
-    }
+    setTimeout(() => {
+      if (document.activeElement) {
+        const id = document.activeElement.getAttribute('id');
+        setCareerList(
+          careerList.map((career) => {
+            if (career.id === id && num > 0) {
+              career.year = num;
+            }
+            return career;
+          }),
+        );
+      }
+    }, 0);
   };
 
   const handleChangeMonth = (str: string, num: number) => {
-    if (document.activeElement) {
-      console.log(document.activeElement.getAttribute('id'));
-      const id = document.activeElement.getAttribute('id');
-      setCareerList(
-        careerList.map((career) => {
-          if (career.id === id && num > 0) {
-            career.month = num;
-          }
-          return career;
-        }),
-      );
-    }
+    setTimeout(() => {
+      if (document.activeElement) {
+        console.log(document.activeElement.getAttribute('id'));
+        const id = document.activeElement.getAttribute('id');
+        setCareerList(
+          careerList.map((career) => {
+            if (career.id === id && num > 0) {
+              career.month = num;
+            }
+            return career;
+          }),
+        );
+      }
+    }, 0);
   };
 
   const deleteCareer = (e: React.MouseEvent<HTMLButtonElement>) => {
