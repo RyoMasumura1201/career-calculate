@@ -2,7 +2,7 @@ import Head from 'next/head';
 import { Header } from '../components/Header';
 import { Footer } from '../components/Footer';
 import { Box, Select } from '@chakra-ui/react';
-import { Stack, HStack, VStack } from '@chakra-ui/react';
+import { Stack, HStack } from '@chakra-ui/react';
 import { Text } from '@chakra-ui/layout';
 import {
   NumberInput,
@@ -45,23 +45,19 @@ export default function Home() {
     );
   };
 
-  const handleChangeYear = (e: React.ChangeEvent<HTMLInputElement>) => {
-    console.log('v');
-    console.log(e.target);
-    console.log(e.currentTarget);
-    console.log('v');
-    const id = e.target.getAttribute('id');
-    const value = e.target.value;
-    console.log(id);
-    console.log(value);
-    setCareerList(
-      careerList.map((career) => {
-        if (career.id === id && value) {
-          career.year = parseInt(value);
-        }
-        return career;
-      }),
-    );
+  const handleChangeYear = (str: string, num: number) => {
+    if (document.activeElement) {
+      console.log(document.activeElement.getAttribute('id'));
+      const id = document.activeElement.getAttribute('id');
+      setCareerList(
+        careerList.map((career) => {
+          if (career.id === id && num > 0) {
+            career.year = num;
+          }
+          return career;
+        }),
+      );
+    }
   };
 
   const handleChangeMonth = () => {};
@@ -102,15 +98,20 @@ export default function Home() {
                   <option value='会社'>会社</option>
                   <option value='その他'>その他</option>
                 </Select>
-                <Box onChange={handleChangeYear}>
-                  <NumberInput min={1} value={year} defaultValue={3} id={id}>
-                    <NumberInputField />
-                    <NumberInputStepper>
-                      <NumberIncrementStepper />
-                      <NumberDecrementStepper />
-                    </NumberInputStepper>
-                  </NumberInput>
-                </Box>
+                <NumberInput
+                  defaultValue={3}
+                  min={1}
+                  value={year}
+                  onChange={handleChangeYear}
+                  id={id}
+                >
+                  <NumberInputField />
+                  <NumberInputStepper>
+                    <NumberIncrementStepper />
+                    <NumberDecrementStepper />
+                  </NumberInputStepper>
+                </NumberInput>
+
                 <Text fontSize='sm'>年間</Text>
                 <NumberInput
                   defaultValue={4}
