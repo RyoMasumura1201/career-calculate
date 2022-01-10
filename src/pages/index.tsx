@@ -60,7 +60,20 @@ export default function Home() {
     }
   };
 
-  const handleChangeMonth = () => {};
+  const handleChangeMonth = (str: string, num: number) => {
+    if (document.activeElement) {
+      console.log(document.activeElement.getAttribute('id'));
+      const id = document.activeElement.getAttribute('id');
+      setCareerList(
+        careerList.map((career) => {
+          if (career.id === id && num > 0) {
+            career.month = num;
+          }
+          return career;
+        }),
+      );
+    }
+  };
 
   const deleteCareer = (e: React.MouseEvent<HTMLButtonElement>) => {
     if (careerList.length > 1) {
@@ -119,6 +132,7 @@ export default function Home() {
                   max={12}
                   value={month}
                   onChange={handleChangeMonth}
+                  id={id}
                 >
                   <NumberInputField />
                   <NumberInputStepper>
