@@ -14,12 +14,14 @@ import {
 import React, { useState } from 'react';
 import { AddIcon, DeleteIcon } from '@chakra-ui/icons';
 import { IconButton, Button } from '@chakra-ui/react';
-import { carrerType } from '../../type';
+import { carrerType, calculatedCareerType } from '../../type';
+import dayjs from 'dayjs';
 
 export default function Home() {
   const [careerList, setCareerList] = useState<carrerType[]>([
     { id: '1', job: '', year: 3, month: 4 },
   ]);
+  const [caluculatedCareerList, setCalculatedCareerList] = useState<calculatedCareerType[]>([]);
   const addCareer = () => {
     setCareerList([
       ...careerList,
@@ -84,6 +86,31 @@ export default function Home() {
       setCareerList(careerList.filter((career) => career.id != id));
     }
   };
+
+  const calculateCareer = () => {
+    const now = dayjs();
+    const reverseCareerList = careerList.reverse();
+    reverseCareerList.forEach((career, i) => {
+      console.log(i);
+      if (i === 0) {
+        const year = now.year() - career.year;
+
+        setCalculatedCareerList([
+          ...caluculatedCareerList,
+          {
+            id: i.toString(),
+            job: career.job,
+            fromYear: year,
+            fromMonth: career.month,
+            toYear: now.year(),
+            toMonth: now.month(),
+          },
+        ]);
+      }
+    });
+
+    console.log(caluculatedCareerList);
+  };
   return (
     <div className='site-wrapper'>
       <Head>
@@ -105,7 +132,7 @@ export default function Home() {
                 onClick={addCareer}
               />
 
-              <Button colorScheme='teal' variant='outline'>
+              <Button colorScheme='teal' variant='outline' onClick={calculateCareer}>
                 計算
               </Button>
             </HStack>
