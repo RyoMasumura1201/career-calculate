@@ -13,7 +13,7 @@ import {
 } from '@chakra-ui/react';
 import React, { useState } from 'react';
 import { AddIcon, DeleteIcon } from '@chakra-ui/icons';
-import { IconButton } from '@chakra-ui/react';
+import { IconButton, Button } from '@chakra-ui/react';
 import { carrerType } from '../../type';
 
 export default function Home() {
@@ -96,13 +96,19 @@ export default function Home() {
       <main>
         <Box textAlign='center' width='70%' margin='0 auto'>
           <Stack spacing={2} margin='0'>
-            <IconButton
-              colorScheme='teal'
-              aria-label='経歴追加'
-              width='40px'
-              icon={<AddIcon />}
-              onClick={addCareer}
-            />
+            <HStack>
+              <IconButton
+                colorScheme='teal'
+                aria-label='経歴追加'
+                width='40px'
+                icon={<AddIcon />}
+                onClick={addCareer}
+              />
+
+              <Button colorScheme='teal' variant='outline'>
+                計算
+              </Button>
+            </HStack>
 
             {careerList.map(({ id, job, year, month }) => (
               <HStack key={id}>
