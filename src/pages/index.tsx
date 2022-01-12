@@ -21,7 +21,7 @@ export default function Home() {
   const [careerList, setCareerList] = useState<carrerType[]>([
     { id: '0', job: '高校', year: 3, month: 4 },
   ]);
-  const [caluculatedCareerList, setCalculatedCareerList] = useState<calculatedCareerType[]>([]);
+  const [calculatedCareerList, setCalculatedCareerList] = useState<calculatedCareerType[]>([]);
   const addCareer = () => {
     setCareerList([
       ...careerList,
@@ -96,7 +96,7 @@ export default function Home() {
         const year = now.year() - career.year;
 
         setCalculatedCareerList([
-          ...caluculatedCareerList,
+          ...calculatedCareerList,
           {
             id: i.toString(),
             job: career.job,
@@ -109,7 +109,7 @@ export default function Home() {
       }
     });
 
-    console.log(caluculatedCareerList);
+    console.log(calculatedCareerList);
   };
   return (
     <div className='site-wrapper'>
