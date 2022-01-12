@@ -19,7 +19,7 @@ import dayjs from 'dayjs';
 
 export default function Home() {
   const [careerList, setCareerList] = useState<carrerType[]>([
-    { id: '1', job: '', year: 3, month: 4 },
+    { id: '1', job: '高校', year: 3, month: 4 },
   ]);
   const [caluculatedCareerList, setCalculatedCareerList] = useState<calculatedCareerType[]>([]);
   const addCareer = () => {
@@ -27,7 +27,7 @@ export default function Home() {
       ...careerList,
       {
         id: (parseInt(careerList[careerList.length - 1].id) + 1).toString(),
-        job: '',
+        job: '高校',
         year: 3,
         month: 4,
       },
@@ -91,12 +91,10 @@ export default function Home() {
     const now = dayjs();
     const reverseCareerList = careerList.reverse();
     reverseCareerList.forEach((career, i) => {
-      console.log(i);
       if (i === 0) {
         const year = now.year() - career.year;
 
         setCalculatedCareerList([
-          ...caluculatedCareerList,
           {
             id: i.toString(),
             job: career.job,
@@ -142,6 +140,8 @@ export default function Home() {
                 <Select value={job} onChange={handleChangeJob} id={id}>
                   <option value='高校'>高校</option>
                   <option value='大学'>大学</option>
+                  <option value='大学院(修士)'>大学院(修士)</option>
+                  <option value='大学院(博士)'>大学院(博士)</option>
                   <option value='高専'>高専</option>
                   <option value='会社'>会社</option>
                   <option value='その他'>その他</option>
