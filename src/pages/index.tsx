@@ -19,7 +19,7 @@ import dayjs from 'dayjs';
 
 export default function Home() {
   const [careerList, setCareerList] = useState<carrerType[]>([
-    { id: '1', job: '高校', year: 3, month: 4 },
+    { id: '0', job: '高校', year: 3, month: 4 },
   ]);
   const [caluculatedCareerList, setCalculatedCareerList] = useState<calculatedCareerType[]>([]);
   const addCareer = () => {
@@ -89,12 +89,14 @@ export default function Home() {
 
   const calculateCareer = () => {
     const now = dayjs();
-    const reverseCareerList = careerList.reverse();
+    const reverseCareerList = [...careerList].reverse();
     reverseCareerList.forEach((career, i) => {
+      console.log(i);
       if (i === 0) {
         const year = now.year() - career.year;
 
         setCalculatedCareerList([
+          ...caluculatedCareerList,
           {
             id: i.toString(),
             job: career.job,
