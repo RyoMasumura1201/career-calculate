@@ -93,7 +93,10 @@ export default function Home() {
     reverseCareerList.forEach((career, i) => {
       console.log(i);
       if (i === 0) {
-        const year = now.year() - career.year;
+        let year = now.year() - career.year;
+        if (now.month() < 4 && career.month >= 4) {
+          year--;
+        }
 
         setCalculatedCareerList([
           ...calculatedCareerList,
@@ -189,6 +192,13 @@ export default function Home() {
               </HStack>
             ))}
           </Stack>
+          {calculatedCareerList.map(({ id, job, fromYear, fromMonth, toYear, toMonth }) => (
+            <HStack key={id}>
+              <Text>
+                {job}:{fromYear}年{fromMonth}月~{toYear}年{toMonth}月
+              </Text>
+            </HStack>
+          ))}
         </Box>
       </main>
 
