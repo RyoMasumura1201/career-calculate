@@ -89,6 +89,9 @@ export default function Home() {
 
   const calculateCareer = () => {
     const now = dayjs();
+    console.log(now);
+    console.log(now.year());
+    console.log(now.month());
     const reverseCareerList = [...careerList].reverse();
     reverseCareerList.forEach((career, i) => {
       console.log(i);
@@ -106,7 +109,7 @@ export default function Home() {
             fromYear: year,
             fromMonth: career.month,
             toYear: now.year(),
-            toMonth: now.month(),
+            toMonth: now.month() + 1,
           },
         ]);
       } else {
