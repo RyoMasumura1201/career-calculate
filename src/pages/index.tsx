@@ -53,7 +53,7 @@ export default function Home() {
         const id = document.activeElement.getAttribute('id');
         setCareerList(
           careerList.map((career) => {
-            if (career.id === id && num > 0) {
+            if (career.id === id && num >= 0) {
               career.year = num;
             }
             return career;
@@ -69,7 +69,7 @@ export default function Home() {
         const id = document.activeElement.getAttribute('id');
         setCareerList(
           careerList.map((career) => {
-            if (career.id === id && num > 0) {
+            if (career.id === id && num >= 0) {
               career.month = num;
             }
             return career;
@@ -106,10 +106,10 @@ export default function Home() {
             toMonth: now.month(),
           },
         ]);
+      } else {
+        const previousCareer = calculatedCareerList[i - 1];
       }
     });
-
-    console.log(calculatedCareerList);
   };
   return (
     <div className='site-wrapper'>
@@ -150,7 +150,7 @@ export default function Home() {
                 </Select>
                 <NumberInput
                   defaultValue={3}
-                  min={1}
+                  min={0}
                   value={year}
                   onChange={handleChangeYear}
                   id={id}
@@ -165,7 +165,7 @@ export default function Home() {
                 <Text fontSize='sm'>年間</Text>
                 <NumberInput
                   defaultValue={4}
-                  min={1}
+                  min={0}
                   max={12}
                   value={month}
                   onChange={handleChangeMonth}
