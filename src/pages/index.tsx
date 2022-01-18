@@ -120,13 +120,35 @@ export default function Home() {
         });
       } else {
         const nextCareer = calculatedCareerListForCalculate[i - 1];
-        const previousCareer = reverseCareerList[i];
         if (i === 1) {
           console.log('nextCareer');
           console.log(nextCareer);
           console.log('previousCareer');
-          console.log(previousCareer);
+          console.log(career);
         }
+        let fromYear = nextCareer.fromYear - career.year;
+        if (nextCareer.fromYear < 4 && career.month >= 4) {
+          fromYear--;
+        }
+        // nextCareerのfrom日付から一日前にしたい
+        const fromDateOfNextCareer = dayjs()
+          .year(nextCareer.fromYear)
+          .month(nextCareer.fromMonth)
+          .date(1);
+        const toDateOfCareer = fromDateOfNextCareer.subtract(1, 'day');
+        console.log(fromDateOfNextCareer);
+        console.log(toDateOfCareer);
+        setCalculatedCareerList([
+          ...calculatedCareerList,
+          {
+            id: i.toString(),
+            job: career.job,
+            fromYear: fromYear,
+            fromMonth: career.month,
+            toYear: now.year(),
+            toMonth: now.month() + 1,
+          },
+        ]);
       }
     });
   };
