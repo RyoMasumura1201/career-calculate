@@ -90,6 +90,7 @@ export default function Home() {
   const calculateCareer = () => {
     const now = dayjs();
     const reverseCareerList = [...careerList].reverse();
+    const calculatedCareerListForCalculate: calculatedCareerType[] = [];
     reverseCareerList.forEach((career, i) => {
       console.log(i);
       if (i === 0) {
@@ -109,8 +110,23 @@ export default function Home() {
             toMonth: now.month() + 1,
           },
         ]);
+        calculatedCareerListForCalculate.push({
+          id: i.toString(),
+          job: career.job,
+          fromYear: year,
+          fromMonth: career.month,
+          toYear: now.year(),
+          toMonth: now.month() + 1,
+        });
       } else {
-        const previousCareer = calculatedCareerList[i - 1];
+        const nextCareer = calculatedCareerListForCalculate[i - 1];
+        const previousCareer = reverseCareerList[i];
+        if (i === 1) {
+          console.log('nextCareer');
+          console.log(nextCareer);
+          console.log('previousCareer');
+          console.log(previousCareer);
+        }
       }
     });
   };
