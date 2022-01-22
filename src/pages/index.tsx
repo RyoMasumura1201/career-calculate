@@ -224,7 +224,6 @@ export default function Home() {
           {calculatedCareerList.map(({ id, job, fromYear, fromMonth, toYear, toMonth }) => (
             <HStack key={id}>
               <CalculatedCareer
-                id={id}
                 job={job}
                 fromYear={fromYear}
                 fromMonth={fromMonth}
