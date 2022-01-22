@@ -120,12 +120,6 @@ export default function Home() {
         });
       } else {
         const nextCareer = calculatedCareerListForCalculate[i - 1];
-        if (i === 1) {
-          console.log('nextCareer');
-          console.log(nextCareer);
-          console.log('previousCareer');
-          console.log(career);
-        }
         let fromYear = nextCareer.fromYear - career.year;
         if (nextCareer.fromYear < 4 && career.month >= 4) {
           fromYear--;
@@ -136,20 +130,16 @@ export default function Home() {
           .month(nextCareer.fromMonth)
           .date(1);
         const toDateOfCareer = fromDateOfNextCareer.subtract(1, 'day');
-        console.log(fromDateOfNextCareer);
-        console.log(toDateOfCareer);
-        setCalculatedCareerList([
-          ...calculatedCareerList,
-          {
-            id: i.toString(),
-            job: career.job,
-            fromYear: fromYear,
-            fromMonth: career.month,
-            toYear: now.year(),
-            toMonth: now.month() + 1,
-          },
-        ]);
+        calculatedCareerListForCalculate.push({
+          id: i.toString(),
+          job: career.job,
+          fromYear: fromYear,
+          fromMonth: career.month,
+          toYear: toDateOfCareer.year(),
+          toMonth: toDateOfCareer.month(),
+        });
       }
+      setCalculatedCareerList([...calculatedCareerListForCalculate].reverse());
     });
   };
   return (
