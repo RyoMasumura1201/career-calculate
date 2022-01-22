@@ -122,8 +122,8 @@ export default function Home() {
                 <Select value={job} onChange={handleChangeJob} id={id}>
                   <option value='高校'>高校</option>
                   <option value='大学'>大学</option>
-                  <option value='大学院(修士)'>大学院(修士)</option>
-                  <option value='大学院(博士)'>大学院(博士)</option>
+                  <option value='修士'>修士</option>
+                  <option value='博士'>博士</option>
                   <option value='高専'>高専</option>
                   <option value='浪人'>浪人</option>
                   <option value='会社'>会社</option>
