@@ -170,7 +170,7 @@ export default function Home() {
               </HStack>
             ))}
           </Stack>
-          <Stack spacing='3' mt='5'>
+          <Stack spacing='3' mt='5' mb='5'>
             {calculatedCareerList.map(({ id, job, fromYear, fromMonth, toYear, toMonth }) => (
               <HStack key={id}>
                 <CalculatedCareer
