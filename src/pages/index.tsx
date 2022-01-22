@@ -16,6 +16,7 @@ import { AddIcon, DeleteIcon } from '@chakra-ui/icons';
 import { IconButton, Button } from '@chakra-ui/react';
 import { carrerType, calculatedCareerType } from '../../type';
 import dayjs from 'dayjs';
+import CalculatedCareer from '../components/CalculatedCareer';
 
 export default function Home() {
   const [careerList, setCareerList] = useState<carrerType[]>([
@@ -222,9 +223,14 @@ export default function Home() {
           </Stack>
           {calculatedCareerList.map(({ id, job, fromYear, fromMonth, toYear, toMonth }) => (
             <HStack key={id}>
-              <Text>
-                {job}:{fromYear}年{fromMonth}月~{toYear}年{toMonth}月
-              </Text>
+              <CalculatedCareer
+                id={id}
+                job={job}
+                fromYear={fromYear}
+                fromMonth={fromMonth}
+                toYear={toYear}
+                toMonth={toMonth}
+              />
             </HStack>
           ))}
         </Box>
