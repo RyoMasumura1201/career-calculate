@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import Head from 'next/head';
 import { carrerType } from '../../type';
 import { Header } from '../components/Header';
 import { Footer } from '../components/Footer';
@@ -20,6 +19,7 @@ import {
 } from '@chakra-ui/react';
 import { Text } from '@chakra-ui/layout';
 import { AddIcon, DeleteIcon } from '@chakra-ui/icons';
+import { Meta } from '../components/Meta';
 
 export default function Home() {
   const [careerList, setCareerList] = useState<carrerType[]>([
@@ -97,11 +97,7 @@ export default function Home() {
   };
   return (
     <div className='site-wrapper'>
-      <Head>
-        <title>経歴年度計算</title>
-        <meta name='description' content='経歴年度を計算する' />
-        <link rel='icon' href='/favicon.ico' />
-      </Head>
+      <Meta />
       <Header />
 
       <main>
