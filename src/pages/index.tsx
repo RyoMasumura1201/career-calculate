@@ -100,17 +100,6 @@ export default function Home() {
           year--;
         }
 
-        setCalculatedCareerList([
-          ...calculatedCareerList,
-          {
-            id: i.toString(),
-            job: career.job,
-            fromYear: year,
-            fromMonth: career.month,
-            toYear: now.year(),
-            toMonth: now.month() + 1,
-          },
-        ]);
         calculatedCareerListForCalculate.push({
           id: i.toString(),
           job: career.job,
