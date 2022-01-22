@@ -4,7 +4,7 @@ import Head from 'next/head';
 const Meta: React.VFC = () => {
   return (
     <Head>
-      <title>経歴年度計算</title>
+      <title>経歴年度計算してくれる君</title>
       <meta name='description' content='経歴年度を計算する' />
       <link
         rel='icon'
@@ -15,7 +15,7 @@ const Meta: React.VFC = () => {
         type='image/png'
         href='https://twemoji.maxcdn.com/v/13.1.0/72x72/1f4f0.png'
       />
-      <meta name='og:title' content='経歴年度計算' />
+      <meta name='og:title' content='経歴年度計算してくれる君' />
       <meta property='og:description' content='経歴年度を計算する' />
       <meta property='og:image' content='https://career-calculate.vercel.app/ogp.png' />
       <meta name='twitter:card' content='summary_large_image' />
