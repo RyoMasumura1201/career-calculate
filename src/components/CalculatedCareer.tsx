@@ -8,8 +8,8 @@ type Props = Omit<calculatedCareerType, 'id'>;
 const CalculatedCareer: React.VFC<Props> = (props) => {
   const { job, fromYear, fromMonth, toYear, toMonth } = props;
   return (
-    <Box>
-      <Text fontSize='xx-large' fontWeight='bold' textAlign='left'>
+    <Box margin='0 auto'>
+      <Text fontSize='xx-large' fontWeight='bold'>
         {job}
       </Text>
       <Text fontSize='x-large'>
