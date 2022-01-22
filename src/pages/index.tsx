@@ -129,6 +129,7 @@ export default function Home() {
                   <option value='大学院(修士)'>大学院(修士)</option>
                   <option value='大学院(博士)'>大学院(博士)</option>
                   <option value='高専'>高専</option>
+                  <option value='浪人'>浪人</option>
                   <option value='会社'>会社</option>
                   <option value='その他'>その他</option>
                 </Select>
