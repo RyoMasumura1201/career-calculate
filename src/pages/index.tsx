@@ -14,15 +14,16 @@ import {
 import React, { useState } from 'react';
 import { AddIcon, DeleteIcon } from '@chakra-ui/icons';
 import { IconButton, Button } from '@chakra-ui/react';
-import { carrerType, calculatedCareerType } from '../../type';
-import dayjs from 'dayjs';
+import { carrerType } from '../../type';
 import CalculatedCareer from '../components/CalculatedCareer';
+import { useCalculateCareer } from '../hooks/useCalculateCareer';
 
 export default function Home() {
   const [careerList, setCareerList] = useState<carrerType[]>([
     { id: '0', job: '高校', year: 3, month: 4 },
   ]);
-  const [calculatedCareerList, setCalculatedCareerList] = useState<calculatedCareerType[]>([]);
+
+  const { calculateCareer, calculatedCareerList } = useCalculateCareer(careerList);
   const addCareer = () => {
     setCareerList([
       ...careerList,
@@ -88,49 +89,8 @@ export default function Home() {
     }
   };
 
-  const calculateCareer = () => {
-    const now = dayjs();
-    const reverseCareerList = [...careerList].reverse();
-    const calculatedCareerListForCalculate: calculatedCareerType[] = [];
-    reverseCareerList.forEach((career, i) => {
-      console.log(i);
-      if (i === 0) {
-        let year = now.year() - career.year;
-        if (now.month() < 4 && career.month >= 4) {
-          year--;
-        }
-
-        calculatedCareerListForCalculate.push({
-          id: i.toString(),
-          job: career.job,
-          fromYear: year,
-          fromMonth: career.month,
-          toYear: now.year(),
-          toMonth: now.month() + 1,
-        });
-      } else {
-        const nextCareer = calculatedCareerListForCalculate[i - 1];
-        let fromYear = nextCareer.fromYear - career.year;
-        if (nextCareer.fromYear < 4 && career.month >= 4) {
-          fromYear--;
-        }
-        // nextCareerのfrom日付から一日前にしたい
-        const fromDateOfNextCareer = dayjs()
-          .year(nextCareer.fromYear)
-          .month(nextCareer.fromMonth)
-          .date(1);
-        const toDateOfCareer = fromDateOfNextCareer.subtract(1, 'day');
-        calculatedCareerListForCalculate.push({
-          id: i.toString(),
-          job: career.job,
-          fromYear: fromYear,
-          fromMonth: career.month,
-          toYear: toDateOfCareer.year(),
-          toMonth: toDateOfCareer.month(),
-        });
-      }
-      setCalculatedCareerList([...calculatedCareerListForCalculate].reverse());
-    });
+  const handleCalculate = () => {
+    calculateCareer();
   };
   return (
     <div className='site-wrapper'>
@@ -153,7 +113,7 @@ export default function Home() {
                 onClick={addCareer}
               />
 
-              <Button colorScheme='teal' variant='outline' onClick={calculateCareer}>
+              <Button colorScheme='teal' variant='outline' onClick={handleCalculate}>
                 計算
               </Button>
             </HStack>
