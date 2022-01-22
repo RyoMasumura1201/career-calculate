@@ -16,7 +16,7 @@ export const Meta: React.VFC = () => {
       />
       <meta name='og:title' content='経歴年度計算' />
       <meta property='og:description' content='経歴年度を計算する' />
-      <meta property='og:image' content='https://career-calculate.vercel.app/public/ogp.png' />
+      <meta property='og:image' content='https://career-calculate.vercel.app/ogp.png' />
       <meta name='twitter:card' content='summary_large_image' />
     </Head>
   );
