@@ -1,5 +1,5 @@
-import { Box, Center } from '@chakra-ui/layout';
 import { Text } from '@chakra-ui/react';
+import { Box, Center } from '@chakra-ui/layout';
 import { FaGithub } from 'react-icons/fa';
 
 export const Footer: React.VFC = () => {

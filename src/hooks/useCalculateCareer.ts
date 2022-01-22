@@ -1,6 +1,6 @@
+import { useState } from 'react';
 import { carrerType, calculatedCareerType } from '../../type';
 import dayjs from 'dayjs';
-import { useState } from 'react';
 
 export const useCalculateCareer = (careerList: carrerType[]) => {
   const [calculatedCareerList, setCalculatedCareerList] = useState<calculatedCareerType[]>([]);

@@ -1,22 +1,25 @@
+import React, { useState } from 'react';
 import Head from 'next/head';
+import { carrerType } from '../../type';
 import { Header } from '../components/Header';
 import { Footer } from '../components/Footer';
-import { Box, Select } from '@chakra-ui/react';
-import { Stack, HStack } from '@chakra-ui/react';
-import { Text } from '@chakra-ui/layout';
+import CalculatedCareer from '../components/CalculatedCareer';
+import { useCalculateCareer } from '../hooks/useCalculateCareer';
 import {
   NumberInput,
   NumberInputField,
   NumberInputStepper,
   NumberIncrementStepper,
   NumberDecrementStepper,
+  Stack,
+  HStack,
+  Box,
+  Select,
+  IconButton,
+  Button,
 } from '@chakra-ui/react';
-import React, { useState } from 'react';
+import { Text } from '@chakra-ui/layout';
 import { AddIcon, DeleteIcon } from '@chakra-ui/icons';
-import { IconButton, Button } from '@chakra-ui/react';
-import { carrerType } from '../../type';
-import CalculatedCareer from '../components/CalculatedCareer';
-import { useCalculateCareer } from '../hooks/useCalculateCareer';
 
 export default function Home() {
   const [careerList, setCareerList] = useState<carrerType[]>([

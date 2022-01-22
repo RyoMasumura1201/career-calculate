@@ -1,6 +1,6 @@
-import { Text } from '@chakra-ui/layout';
-import { calculatedCareerType } from '../../type';
 import { memo } from 'react';
+import { calculatedCareerType } from '../../type';
+import { Text } from '@chakra-ui/layout';
 
 type Props = Omit<calculatedCareerType, 'id'>;
 
