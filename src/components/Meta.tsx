@@ -1,6 +1,7 @@
+import { memo } from 'react';
 import Head from 'next/head';
 
-export const Meta: React.VFC = () => {
+const Meta: React.VFC = () => {
   return (
     <Head>
       <title>経歴年度計算</title>
@@ -21,3 +22,5 @@ export const Meta: React.VFC = () => {
     </Head>
   );
 };
+
+export default memo(Meta);

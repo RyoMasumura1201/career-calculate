@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { carrerType } from '../../type';
-import { Header } from '../components/Header';
-import { Footer } from '../components/Footer';
+import Header from '../components/Header';
+import Footer from '../components/Footer';
+import Meta from '../components/Meta';
 import CalculatedCareer from '../components/CalculatedCareer';
 import { useCalculateCareer } from '../hooks/useCalculateCareer';
 import {
@@ -19,7 +20,6 @@ import {
 } from '@chakra-ui/react';
 import { Text } from '@chakra-ui/layout';
 import { AddIcon, DeleteIcon } from '@chakra-ui/icons';
-import { Meta } from '../components/Meta';
 
 export default function Home() {
   const [careerList, setCareerList] = useState<carrerType[]>([
