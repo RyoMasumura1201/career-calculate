@@ -101,7 +101,7 @@ export default function Home() {
       <Header />
 
       <main>
-        <Box textAlign='center' width='70%' margin='0 auto'>
+        <Box textAlign='center' width={{ base: '90%', md: '40%' }} margin='0 auto'>
           <Stack spacing={2} margin='0'>
             <HStack>
               <IconButton
@@ -170,7 +170,7 @@ export default function Home() {
               </HStack>
             ))}
           </Stack>
-          <Stack spacing='3'>
+          <Stack spacing='3' mt='5'>
             {calculatedCareerList.map(({ id, job, fromYear, fromMonth, toYear, toMonth }) => (
               <HStack key={id}>
                 <CalculatedCareer
