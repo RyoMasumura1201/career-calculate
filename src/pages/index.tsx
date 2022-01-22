@@ -174,17 +174,19 @@ export default function Home() {
               </HStack>
             ))}
           </Stack>
-          {calculatedCareerList.map(({ id, job, fromYear, fromMonth, toYear, toMonth }) => (
-            <HStack key={id}>
-              <CalculatedCareer
-                job={job}
-                fromYear={fromYear}
-                fromMonth={fromMonth}
-                toYear={toYear}
-                toMonth={toMonth}
-              />
-            </HStack>
-          ))}
+          <Stack spacing='3'>
+            {calculatedCareerList.map(({ id, job, fromYear, fromMonth, toYear, toMonth }) => (
+              <HStack key={id}>
+                <CalculatedCareer
+                  job={job}
+                  fromYear={fromYear}
+                  fromMonth={fromMonth}
+                  toYear={toYear}
+                  toMonth={toMonth}
+                />
+              </HStack>
+            ))}
+          </Stack>
         </Box>
       </main>
 
