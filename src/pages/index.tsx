@@ -5,20 +5,7 @@ import Footer from '../components/Footer';
 import Meta from '../components/Meta';
 import CalculatedCareer from '../components/CalculatedCareer';
 import { useCalculateCareer } from '../hooks/useCalculateCareer';
-import {
-  NumberInput,
-  NumberInputField,
-  NumberInputStepper,
-  NumberIncrementStepper,
-  NumberDecrementStepper,
-  Stack,
-  HStack,
-  Box,
-  Select,
-  IconButton,
-  Button,
-  Input,
-} from '@chakra-ui/react';
+import { Stack, HStack, Box, Select, IconButton, Button, Input } from '@chakra-ui/react';
 import { Text } from '@chakra-ui/layout';
 import { AddIcon, DeleteIcon } from '@chakra-ui/icons';
 
