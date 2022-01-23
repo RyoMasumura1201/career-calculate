@@ -17,6 +17,7 @@ import {
   Select,
   IconButton,
   Button,
+  Input,
 } from '@chakra-ui/react';
 import { Text } from '@chakra-ui/layout';
 import { AddIcon, DeleteIcon } from '@chakra-ui/icons';
@@ -52,36 +53,30 @@ export default function Home() {
     );
   };
 
-  const handleChangeYear = (str: string, num: number) => {
-    setTimeout(() => {
-      if (document.activeElement) {
-        const id = document.activeElement.getAttribute('id');
-        setCareerList(
-          careerList.map((career) => {
-            if (career.id === id && num >= 0) {
-              career.year = num;
-            }
-            return career;
-          }),
-        );
-      }
-    }, 0);
+  const handleChangeYear = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const id = e.target.getAttribute('id');
+    const value = e.target.value;
+    setCareerList(
+      careerList.map((career) => {
+        if (career.id === id) {
+          career.year = parseInt(value);
+        }
+        return career;
+      }),
+    );
   };
 
-  const handleChangeMonth = (str: string, num: number) => {
-    setTimeout(() => {
-      if (document.activeElement) {
-        const id = document.activeElement.getAttribute('id');
-        setCareerList(
-          careerList.map((career) => {
-            if (career.id === id && num >= 0) {
-              career.month = num;
-            }
-            return career;
-          }),
-        );
-      }
-    }, 0);
+  const handleChangeMonth = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const id = e.target.getAttribute('id');
+    const value = e.target.value;
+    setCareerList(
+      careerList.map((career) => {
+        if (career.id === id) {
+          career.month = parseInt(value);
+        }
+        return career;
+      }),
+    );
   };
 
   const deleteCareer = (e: React.MouseEvent<HTMLButtonElement>) => {
@@ -119,7 +114,7 @@ export default function Home() {
 
             {careerList.map(({ id, job, year, month }) => (
               <HStack key={id}>
-                <Select value={job} onChange={handleChangeJob} id={id}>
+                <Select value={job} onChange={handleChangeJob} id={id} width='container.xl'>
                   <option value='高校'>高校</option>
                   <option value='大学'>大学</option>
                   <option value='修士'>修士</option>
@@ -129,41 +124,25 @@ export default function Home() {
                   <option value='会社'>会社</option>
                   <option value='その他'>その他</option>
                 </Select>
-                <NumberInput
-                  defaultValue={3}
-                  min={0}
-                  value={year}
-                  onChange={handleChangeYear}
-                  id={id}
-                >
-                  <NumberInputField />
-                  <NumberInputStepper>
-                    <NumberIncrementStepper />
-                    <NumberDecrementStepper />
-                  </NumberInputStepper>
-                </NumberInput>
-
-                <Text fontSize='sm'>年間</Text>
-                <NumberInput
-                  defaultValue={4}
-                  min={0}
-                  max={12}
+                <Input value={year} type='number' onChange={handleChangeYear} id={id} width='sm' />
+                <Text fontSize='sm' width='md'>
+                  年間
+                </Text>
+                <Input
                   value={month}
+                  type='number'
                   onChange={handleChangeMonth}
                   id={id}
-                >
-                  <NumberInputField />
-                  <NumberInputStepper>
-                    <NumberIncrementStepper />
-                    <NumberDecrementStepper />
-                  </NumberInputStepper>
-                </NumberInput>
-                <Text fontSize='sm'>月から</Text>
+                  width='sm'
+                />
+                <Text fontSize='sm' width='md'>
+                  月から
+                </Text>
                 <IconButton
                   id={id}
                   colorScheme='gray'
                   aria-label='経歴削除'
-                  width='40px'
+                  width='sm'
                   icon={<DeleteIcon />}
                   onClick={deleteCareer}
                 />
