@@ -27,7 +27,7 @@ export default function Home() {
     { id: '0', job: '高校', year: 3, month: 4 },
   ]);
 
-  const { calculateCareer, calculatedCareerList } = useCalculateCareer(careerList);
+  const { calculateCareer, calculatedCareerList, isError } = useCalculateCareer(careerList);
   const addCareer = () => {
     setCareerList([
       ...careerList,
@@ -149,19 +149,25 @@ export default function Home() {
               </HStack>
             ))}
           </Stack>
-          <Stack spacing='3' mt='5' mb='5'>
-            {calculatedCareerList.map(({ id, job, fromYear, fromMonth, toYear, toMonth }) => (
-              <HStack key={id}>
-                <CalculatedCareer
-                  job={job}
-                  fromYear={fromYear}
-                  fromMonth={fromMonth}
-                  toYear={toYear}
-                  toMonth={toMonth}
-                />
-              </HStack>
-            ))}
-          </Stack>
+          {isError ? (
+            <Text color='red' mt='5' mb='5' fontSize='lg'>
+              未記入、もしくは無効な値があります。
+            </Text>
+          ) : (
+            <Stack spacing='3' mt='5' mb='5'>
+              {calculatedCareerList.map(({ id, job, fromYear, fromMonth, toYear, toMonth }) => (
+                <HStack key={id}>
+                  <CalculatedCareer
+                    job={job}
+                    fromYear={fromYear}
+                    fromMonth={fromMonth}
+                    toYear={toYear}
+                    toMonth={toMonth}
+                  />
+                </HStack>
+              ))}
+            </Stack>
+          )}
         </Box>
       </main>
 

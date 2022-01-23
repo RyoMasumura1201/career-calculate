@@ -4,7 +4,15 @@ import dayjs from 'dayjs';
 
 export const useCalculateCareer = (careerList: carrerType[]) => {
   const [calculatedCareerList, setCalculatedCareerList] = useState<calculatedCareerType[]>([]);
+  const [isError, setIsError] = useState(false);
   const calculateCareer = () => {
+    setIsError(false);
+    careerList.forEach((career) => {
+      if (!career.year || !career.month) {
+        setIsError(true);
+        return;
+      }
+    });
     const now = dayjs();
     const reverseCareerList = [...careerList].reverse();
     const calculatedCareerListForCalculate: calculatedCareerType[] = [];
@@ -48,5 +56,5 @@ export const useCalculateCareer = (careerList: carrerType[]) => {
     });
   };
 
-  return { calculateCareer, calculatedCareerList };
+  return { calculateCareer, calculatedCareerList, isError };
 };
