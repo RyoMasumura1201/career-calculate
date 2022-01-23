@@ -8,7 +8,13 @@ export const useCalculateCareer = (careerList: carrerType[]) => {
   const calculateCareer = () => {
     setIsError(false);
     careerList.forEach((career) => {
-      if (!career.year || !career.month) {
+      if (
+        Number.isNaN(career.year) ||
+        Number.isNaN(career.month) ||
+        career.year < 0 ||
+        career.month < 1 ||
+        career.month > 12
+      ) {
         setIsError(true);
         return;
       }
